@@ -1,0 +1,326 @@
+/* ============================================================
+   编码查字 · 内网部署版 —— 红色主题布局
+   ============================================================ */
+
+:root {
+  --red: #ac0227;
+  --red-dark: #8b0120;
+  --red-soft: #fdf3f5;
+  --border: #e3dcd6;
+  --bg: #f6f5f4;
+  --card: #ffffff;
+  --text: #33302e;
+  --text-weak: #8d8781;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 14px; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Microsoft YaHei", "PingFang SC", SimSun, "SimSun-ExtB", "MingLiU-ExtB", serif;
+  min-width: 320px;
+}
+
+/* ---------- 顶部品牌栏 ---------- */
+.brand-bar {
+  background: #ffffff;
+  border-bottom: 3px solid var(--red);
+  padding: 14px 0;
+}
+
+.brand-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-title {
+  color: var(--red);
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: "黑体", "Microsoft YaHei", sans-serif;
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  margin-left: auto;
+  color: var(--text-weak);
+  font-size: 0.85rem;
+}
+
+/* ---------- 页面标题 ---------- */
+.page-head {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 26px 20px 14px;
+  text-align: center;
+}
+
+.page-head h1 {
+  color: var(--red);
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 0 0 8px;
+  letter-spacing: 4px;
+  display: inline-block;
+  border-bottom: 3px solid var(--red);
+  padding: 0 26px 8px;
+}
+
+.page-head-note {
+  color: var(--text-weak);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* ---------- 主体两栏 ---------- */
+.main-wrap {
+  max-width: 1160px;
+  margin: 10px auto 30px;
+  padding: 0 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.main-left { flex: 1 1 auto; min-width: 0; }
+.main-right { flex: 0 0 320px; }
+
+@media (max-width: 900px) {
+  .main-wrap { flex-direction: column; }
+  .main-right { flex: 1 1 auto; width: 100%; }
+}
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  padding: 18px 22px 16px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  color: var(--red);
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin-bottom: 14px;
+  padding-left: 10px;
+  border-left: 4px solid var(--red);
+  line-height: 1.2;
+}
+
+/* ---------- 表单 ---------- */
+.field-row { margin-bottom: 16px; }
+
+.field-label {
+  display: block;
+  color: var(--text);
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+#id_input_text {
+  width: 100%;
+  height: 42px;
+  font-size: 1.05rem;
+  padding: 6px 12px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#id_input_text:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(172, 2, 39, 0.12);
+}
+
+/* 单选：两列网格 */
+.radio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px;
+}
+
+@media (max-width: 640px) {
+  .radio-grid { grid-template-columns: 1fr; }
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+
+.radio-item:hover { border-color: var(--red); }
+
+.radio-item.checked {
+  border-color: var(--red);
+  background: var(--red-soft);
+  color: var(--red);
+  font-weight: bold;
+}
+
+.radio-item input { accent-color: var(--red); margin: 0; }
+
+/* 按钮行 */
+.actions-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.btn-primary {
+  background: var(--red);
+  border: 1px solid var(--red);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 6px;
+  padding: 9px 34px 9px 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover:not(:disabled) { background: var(--red-dark); }
+.btn-primary:disabled { opacity: 0.65; cursor: default; }
+
+.use-count { color: var(--text-weak); font-size: 0.85rem; }
+
+/* ---------- 结果表 ---------- */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table th,
+.result-table td {
+  border-bottom: 1px solid #f0ebe6;
+  padding: 9px 12px;
+  vertical-align: middle;
+}
+
+.result-table tr:last-child th,
+.result-table tr:last-child td { border-bottom: none; }
+
+.result-table th {
+  width: 110px;
+  text-align: left;
+  color: var(--red);
+  font-weight: bold;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.hex-cell {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+
+.char-cell { font-size: 1.4rem; line-height: 1.4; }
+
+.note {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #faf7f4;
+  border-left: 3px solid #e3dcd6;
+  color: var(--text-weak);
+  font-size: 0.85rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.note code { color: var(--red); }
+
+/* ---------- 大字卡 ---------- */
+.big-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--red);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 24px 22px 20px;
+  text-align: center;
+  position: sticky;
+  top: 20px;
+}
+
+.char-stage {
+  background: linear-gradient(180deg, #fdf9f8 0%, #f8f1ef 100%);
+  border: 1px solid #f0e7e4;
+  border-radius: 10px;
+  padding: 30px 12px;
+}
+
+.big-char {
+  font-size: 6.5rem;
+  line-height: 1.15;
+  min-height: 6.5rem;
+  color: #463b3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.big-uni {
+  font-family: Consolas, "Courier New", monospace;
+  color: var(--red);
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-top: 16px;
+  letter-spacing: 2px;
+}
+
+.big-uni-empty { color: #d8d2cc; }
+
+.big-tip {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  color: var(--text-weak);
+  font-size: 0.8rem;
+}
+
+/* ---------- 页脚 ---------- */
+.footer {
+  background: var(--red);
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.footer-inner p { margin: 0; font-size: 0.85rem; line-height: 1.8; }
+.footer-inner strong { font-size: 1rem; }
+
+/* ---------- 生僻字动态字体 ---------- */
+.acchar { font-display: block; }

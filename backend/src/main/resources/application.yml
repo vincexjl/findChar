@@ -1,0 +1,14 @@
+server:
+  port: 10030
+
+spring:
+  application:
+    name: findchar-uchar
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+logging:
+  config: classpath:log4j2.xml

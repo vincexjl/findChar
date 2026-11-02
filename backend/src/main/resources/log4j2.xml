@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  编码查字 日志配置
+  - 日志目录：jar 包同级目录下 appLogs（由 UcharApplication#initLogDir 注入 sys:APP_LOG_DIR；
+    IDE 直接运行时退回为工作目录相对路径 appLogs）
+  - 滚动策略：按天滚动；单文件超过 10MB 也滚动，历史日志自动压缩为 .gz
+  - 保留：最多 60 个滚动文件
+-->
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="LOG_DIR">${sys:APP_LOG_DIR:-appLogs}</Property>
+        <Property name="CONSOLE_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Property>
+        <Property name="FILE_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${CONSOLE_PATTERN}" charset="UTF-8"/>
+        </Console>
+
+        <RollingFile name="fileAppender"
+                     fileName="${LOG_DIR}/uchar.log"
+                     filePattern="${LOG_DIR}/uchar-%d{yyyy-MM-dd}-%i.log.gz"
+                     append="true">
+            <PatternLayout pattern="${FILE_PATTERN}" charset="UTF-8"/>
+            <Policies>
+                <!-- 按天滚动（0点起，modulate 对齐自然日） -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- 单文件超过 10MB 触发滚动 -->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- 最多保留 60 个滚动文件（文件名中的 %i 计数） -->
+            <DefaultRolloverStrategy max="60"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 本应用：INFO（查询审计/启动信息/表加载在内），控制台与文件双输出 -->
+        <Logger name="cn.findchar" level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="fileAppender"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="fileAppender"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

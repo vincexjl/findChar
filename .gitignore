@@ -1,0 +1,22 @@
+# ---- Java / Maven ----
+backend/target/
+*.class
+
+# ---- 前端构建产物 ----
+frontend/node_modules/
+frontend/dist/
+# 前端构建后自动拷入的静态资源（构建时重新生成）
+backend/src/main/resources/static/
+
+# ---- 运行时生成 ----
+backend/appLogs/
+data/
+*.log
+*.log.gz
+
+# ---- IDE / 系统 ----
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
