@@ -14,7 +14,7 @@ xcopy /e /y /i frontend\dist\* backend\src\main\resources\static\ >nul || goto :
 
 echo ==== [3/3] mvn package (backend) ====
 cd backend
-call mvn -DskipTests package || goto :err
+call mvn -DskipTests clean package || goto :err
 cd ..
 
 echo ==== BUILD OK: backend\target\findchar-uchar.jar ====

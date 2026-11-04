@@ -16,7 +16,7 @@ Copy-Item -Path 'frontend\dist\*' -Destination $static -Recurse -Force
 
 Write-Host '==== [3/3] mvn package (backend) ===='
 Push-Location backend
-mvn -DskipTests package
+mvn -DskipTests clean package
 if ($LASTEXITCODE -ne 0) { Pop-Location; throw 'maven package failed' }
 Pop-Location
 
