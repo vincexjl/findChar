@@ -6,6 +6,16 @@
 - 前端：Vue 3 + Vite（打包后随 Spring Boot 一起发布，单 jar 部署）
 - 页面样式与原站逐项复刻（#AC0227 主题、大字卡、结果表格；除编码查字外的节点导航已移除）
 
+## 界面预览
+
+默认页面（输入「一」，展示 9 列编码矩阵）：
+
+![编码查字默认页面](docs/shot-default.png)
+
+反查 UTF-8 四字节编码得到扩展平面生僻字「𠮷」（GBK / IBM-1388 按伪码 `[U+XXXX]` 显示，UTF-16 按代理对输出）：
+
+![反查生僻字 U+20BB7](docs/shot-20bb7.png)
+
 ## 功能（与原站一致）
 
 | 能力 | 说明 |
@@ -22,6 +32,9 @@
 | 使用计数 | 纯文件持久化（`data/uchar-count.txt`），重启不丢 |
 
 编码输出列：Unicode、UTF-8、GB18030、UTF-16LE/BE、UTF-32LE/BE、GBK、IBM-1388。
+
+另支持 URL 深链直达查询结果：`http://<host>:10030/?input=F0A0AEB7&type=UTF-8`
+（`type` 取值与页面单选一致：`char | Unicode | utf_16_be | UTF-8 | GB18030 | GBK | IBM1388`）。
 
 ## 与原站对齐的关键技术点（均经原站逐点实测校准）
 

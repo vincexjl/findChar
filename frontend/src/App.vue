@@ -185,9 +185,15 @@ export default {
     },
   },
   async mounted() {
-    // 与原站一致：首次进入默认展示 "一" (U+4E00)
-    this.input = '一'
-    this.searchType = 'char'
+    // 支持 URL 深链：?input=...&type=...（type 取值与查询方式单选一致）
+    const params = new URLSearchParams(window.location.search)
+    const qType = params.get('type')
+    if (qType && this.searchTypes.some((t) => t.value === qType)) {
+      this.searchType = qType
+    }
+    const qInput = params.get('input')
+    this.input = qInput || '一'
+    // 与原站一致：默认展示 "一" (U+4E00)
     await this.submit()
     await this.refreshCount()
   },
